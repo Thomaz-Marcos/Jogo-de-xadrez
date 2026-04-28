@@ -1,6 +1,7 @@
 package com.TMZ.Xadrez.view;
 
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -11,10 +12,13 @@ import java.awt.GridLayout;
 public class MainFrame extends JFrame {
 
     private final JLabel statusLabel;
+    private final JLabel modoLabel;
     private final BoardPanel boardPanel;
 
     private final JLabel capturasBrancasLabel;
     private final JLabel capturasPretasLabel;
+
+    private final JButton trocarModoButton;
 
     public MainFrame() {
         setTitle("Jogo de Xadrez");
@@ -27,7 +31,18 @@ public class MainFrame extends JFrame {
 
         JLabel titulo = new JLabel("Xadrez", JLabel.CENTER);
         titulo.setFont(new Font("Arial", Font.BOLD, 28));
-        titulo.setBorder(BorderFactory.createEmptyBorder(15, 10, 15, 10));
+        titulo.setBorder(BorderFactory.createEmptyBorder(15, 10, 5, 10));
+
+        modoLabel = new JLabel("Modo: Jogador vs Jogador", JLabel.CENTER);
+        modoLabel.setFont(new Font("Arial", Font.PLAIN, 16));
+        modoLabel.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
+
+        trocarModoButton = new JButton("Trocar modo");
+
+        JPanel topPanel = new JPanel(new GridLayout(3, 1));
+        topPanel.add(titulo);
+        topPanel.add(modoLabel);
+        topPanel.add(trocarModoButton);
 
         statusLabel = new JLabel("Vez das peças brancas", JLabel.CENTER);
         statusLabel.setFont(new Font("Arial", Font.PLAIN, 18));
@@ -38,9 +53,6 @@ public class MainFrame extends JFrame {
 
         capturasPretasLabel = new JLabel("Pretas capturaram: -", JLabel.CENTER);
         capturasPretasLabel.setFont(new Font("Arial", Font.PLAIN, 16));
-
-        JPanel topPanel = new JPanel(new BorderLayout());
-        topPanel.add(titulo, BorderLayout.CENTER);
 
         JPanel bottomPanel = new JPanel(new GridLayout(3, 1));
         bottomPanel.add(statusLabel);
@@ -56,9 +68,17 @@ public class MainFrame extends JFrame {
         statusLabel.setText(mensagem);
     }
 
+    public void atualizarModo(String modo) {
+        modoLabel.setText("Modo: " + modo);
+    }
+
     public void atualizarCapturas(String capturasBrancas, String capturasPretas) {
         capturasBrancasLabel.setText("Brancas capturaram: " + capturasBrancas);
         capturasPretasLabel.setText("Pretas capturaram: " + capturasPretas);
+    }
+
+    public JButton getTrocarModoButton() {
+        return trocarModoButton;
     }
 
     public JLabel getStatusLabel() {

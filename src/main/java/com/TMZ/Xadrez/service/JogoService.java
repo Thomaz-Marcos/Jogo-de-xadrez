@@ -21,7 +21,7 @@ public class JogoService {
         Piece alvoCapturado = games.getBoard().getPiece(to);
 
         if (alvoCapturado != null) {
-            games.adicionarCapturas(piece.getColor(), alvoCapturado);
+            games.adicionarCaptura(piece.getColor(), alvoCapturado);
         }
 
         games.getBoard().setPiece(to, piece);
