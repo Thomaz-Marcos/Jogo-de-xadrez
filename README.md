@@ -10,7 +10,11 @@ Projeto de xadrez desenvolvido em Java com interface gráfica em Swing, com movi
 - Controle de turno entre brancas e pretas
 - Captura de peças
 - Exibição do status da partida
-- Estrutura para nomes dos jogadores
+- Exibição do modo de jogo atual
+- Seleção de modo de jogo:
+    - Jogador vs Jogador
+    - Jogador vs IA
+    - IA vs IA
 - IA simples com escolha de movimentos válidos
 
 ## Estrutura do projeto
@@ -21,6 +25,7 @@ src/main/java/com/TMZ/Xadrez
 │   └── GameController.java
 ├── model
 │   ├── Board.java
+│   ├── GameMode.java
 │   ├── GameState.java
 │   ├── Move.java
 │   ├── Piece.java
@@ -54,39 +59,47 @@ src/main/java/com/TMZ/Xadrez
 ### Passos
 
 1. Clone o repositório:
+
 ```bash
-git clone <URL_DO_REPOSITORIO>
+git clone https://github.com/Thomaz-Marcos/Jogo-de-xadrez.git
 ```
 
 2. Acesse a pasta do projeto:
+
 ```bash
-cd nome-do-projeto
+cd Jogo-de-xadrez
 ```
 
 3. Compile o projeto:
+
 ```bash
-mvn clean install
+mvn clean package
 ```
 
-4. Execute a aplicação:
+4. Execute a aplicação pela classe principal do projeto.
+
+Se o projeto estiver configurado com o Maven Exec Plugin, você pode executar com:
+
 ```bash
-mvn spring-boot:run
+mvn exec:java -Dexec.mainClass="com.TMZ.Xadrez.Main"
 ```
 
-> Se o projeto não estiver usando Spring Boot de verdade e for apenas Java Swing, execute a classe principal diretamente pela IDE.
+> Caso o nome da classe principal seja diferente de `com.TMZ.Xadrez.Main`, substitua pelo nome correto da sua classe `main`.
+
+> Se preferir, você também pode executar a classe principal diretamente pela IDE, como IntelliJ IDEA, Eclipse ou VS Code. [web:795][web:809][web:811]
 
 ## Como jogar
 
-1. Clique em uma peça do tabuleiro.
-2. Clique na casa de destino.
-3. O sistema valida se o movimento é permitido.
-4. Se for válido, a jogada é realizada e o turno é alterado.
+1. Escolha o modo de jogo.
+2. Clique em uma peça do tabuleiro.
+3. Clique na casa de destino.
+4. O sistema valida se o movimento é permitido.
+5. Se for válido, a jogada é realizada e o turno é alterado.
+6. Quando o modo incluir IA, a jogada automática será executada no turno correspondente.
 
 ## IA do jogo
 
-A classe `RegrasIA` gera todos os movimentos válidos para a cor atual, separa os movimentos de captura e escolhe um deles.
-Se houver capturas disponíveis, a IA prioriza capturas.
-Caso contrário, ela escolhe um movimento válido aleatório.
+A classe `RegrasIA` gera os movimentos válidos para a cor atual, separa os movimentos de captura e escolhe uma jogada automaticamente. Quando há capturas disponíveis, a IA prioriza esse tipo de movimento; caso contrário, seleciona um movimento válido aleatório.
 
 ## Melhorias futuras
 
@@ -96,19 +109,21 @@ Caso contrário, ela escolhe um movimento válido aleatório.
 - Implementar roque
 - Implementar en passant
 - Melhorar a IA com heurísticas
-- Adicionar seleção de nomes dos jogadores
+- Adicionar nomes personalizados para os jogadores
 - Melhorar a interface visual
+- Reiniciar a partida ao trocar o modo de jogo
+- Destacar visualmente a peça selecionada e movimentos possíveis
 
 ## Observações
 
-O pacote correto do projeto é:
+O pacote base do projeto é:
 
 ```java
 package com.TMZ.Xadrez;
 ```
 
-Se houver alguma referência com espaço extra, como `com.TMZ.Xadrez `, ela deve ser corrigida.
+Se houver alguma referência incorreta com espaço extra, como `com.TMZ.Xadrez `, ela deve ser corrigida para evitar problemas de compilação e organização do código.
 
 ## Autor
 
-Desenvolvido por TMZ.
+Desenvolvido por Thomaz Marcos.
